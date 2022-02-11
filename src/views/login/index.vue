@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form
+      class="login-form"
+      ref="loginFromRef"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -9,27 +14,106 @@
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          placeholder="username"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" />
+        <el-input
+          placeholder="password"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password"
+        />
         <span class="show-pwd">
-          <svg-icon icon="eye" />
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            @click="onChangePwdType"
+          />
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+import { useStore } from 'vuex'
+
+// 数据源
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+// 验证规则
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
+
+// 处理密码框文本显示状态
+const passwordType = ref('password')
+// 显示隐藏密码
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
+
+// 登录动作处理
+const loading = ref(false)
+const loginFromRef = ref(null)
+const store = useStore()
+
+const handleLogin = () => {
+  // 1.进行表单校验
+  loginFromRef.value.validate((valid) => {
+    if (!valid) return
+    // 2.触发登录
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // 登录后操作
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
+</script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
