@@ -6,7 +6,7 @@ const whiteList = ['/login']
 /**
  * 路由前置守卫
  */
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // 存在 token ，进入主页
   // if (store.state.user.token) {
   // 快捷访问
@@ -14,6 +14,11 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next('/')
     } else {
+      // 判断用户资料是否获取
+      // 若不存在用户信息，则需要获取用户信息
+      if (!store.getters.hasUserInfo) {
+        await store.dispatch('user/getUserInfo')
+      }
       next()
     }
   } else {
