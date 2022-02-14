@@ -29,7 +29,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from 'vuex'
+const store = useStore()
+const logout = () => {
+  store.dispatch('user/logout')
+}
+</script>
 
 <style lang="scss" scoped>
 .navbar {
