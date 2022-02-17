@@ -171,6 +171,10 @@
   border-radius: 20px;
 }
 
+.el-avatar {
+  --el-avatar-background-color: none !important;
+}
+
 html,
 body {
   height: 100%;
