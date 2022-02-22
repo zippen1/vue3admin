@@ -11,7 +11,7 @@ const privateRoutes = [
     redirect: '/user/manage',
     meta: {
       title: 'user',
-      icon: 'personnel'
+      icon: 'el-icon-user'
     },
     children: [
       {
@@ -119,7 +119,7 @@ const publicRoutes = [
         component: () => import('@/views/profile/index'),
         meta: {
           title: 'profile',
-          icon: 'el-icon-user'
+          icon: 'el-icon-document'
         }
       },
       {
