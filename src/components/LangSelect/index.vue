@@ -10,7 +10,7 @@
         :effect="effect"
         placement="bottom"
       >
-        <svg-icon id="guide-lang" icon="language" />
+        <div><svg-icon id="guide-lang" icon="language" /></div>
       </el-tooltip>
     </div>
     <template #dropdown>

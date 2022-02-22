@@ -2,13 +2,15 @@
   <el-icon v-if="icon.includes('el-icon')" class="sub-el-icon">
     <component :is="icon" />
   </el-icon>
-  <svg-icon v-else :icon="icon" class="iconnn"></svg-icon>
-  <span>{{ title }}</span>
+  <div v-else>
+    <svg-icon :icon="icon" class="iconnn"></svg-icon>
+  </div>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
-
+import { generateTitle } from '@/utils/i18n'
 defineProps({
   title: {
     type: String,
