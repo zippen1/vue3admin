@@ -5,6 +5,8 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 选择主题 -->
+      <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <!-- 选择语言 -->
       <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
@@ -43,7 +45,7 @@ import Hamburger from '@/components/Hamburger/index'
 import Breadcrumb from '@/components/Breadcrumb/index'
 import LangSelect from '@/components/LangSelect/index'
 import { ref } from '@vue/reactivity'
-
+import ThemePicker from '@/components/ThemePicker'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
