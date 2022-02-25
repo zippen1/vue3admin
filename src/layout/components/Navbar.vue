@@ -5,6 +5,8 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 全屏 -->
+      <screenfull class="right-menu-item hover-effect" />
       <!-- 选择主题 -->
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <!-- 选择语言 -->
@@ -46,6 +48,7 @@ import Breadcrumb from '@/components/Breadcrumb/index'
 import LangSelect from '@/components/LangSelect/index'
 import { ref } from '@vue/reactivity'
 import ThemePicker from '@/components/ThemePicker'
+import Screenfull from '@/components/Screenfull'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
