@@ -18,7 +18,11 @@
           v-show="!isActive(tag)"
           class="el-icon-close"
           @click.prevent.stop="onCloseClick(index)"
-        />
+        >
+          <el-icon>
+            <component :is="closeIcon" />
+          </el-icon>
+        </i>
       </router-link>
     </el-scrollbar>
     <context-menu
@@ -35,7 +39,7 @@ import { ref, reactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 const route = useRoute()
-
+const closeIcon = ref('el-icon-close')
 /**
  * 是否被选中
  */
@@ -133,20 +137,24 @@ watch(visible, (val) => {
       }
       // close 按钮
       .el-icon-close {
-        width: 16px;
-        height: 16px;
+        width: 10px;
+        height: 10px;
         line-height: 10px;
         vertical-align: 2px;
         border-radius: 50%;
         text-align: center;
-        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
         transform-origin: 100% 50%;
+        .el-icon {
+          top: 4.2px;
+        }
         &:before {
-          transform: scale(0.6);
+          transform: scale(0.9);
           display: inline-block;
           vertical-align: -3px;
         }
         &:hover {
+          padding: 0px 2.5px 4.2px 2.5px;
           background-color: #b4bccc;
           color: #fff;
         }
