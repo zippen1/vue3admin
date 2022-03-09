@@ -175,13 +175,12 @@
   --el-avatar-background-color: none !important;
 }
 
-.breadcrumb-enter-active,
-.breadcrumb-leave-active {
-  transition: all 0.5s;
+.breadcrumb-enter-active {
+  transition: all 1s;
 }
 
 .breadcrumb-enter-from,
-.breadcrumb-leave-active {
+.breadcrumb-leave-to {
   opacity: 0;
   transform: translateX(20px);
 }
@@ -204,6 +203,15 @@
 .fade-transform-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.el-input__inner {
+  box-shadow: none !important;
+  --el-select-input-focus-border-color: none !important;
+}
+
+.el-avatar {
+  --el-avatar-bg-color: none !important;
 }
 
 html,

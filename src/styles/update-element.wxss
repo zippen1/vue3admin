@@ -1,0 +1,8 @@
+.el-input__inner {
+  box-shadow: none !important;
+  --el-select-input-focus-border-color: none !important;
+}
+
+.el-avatar {
+  --el-avatar-bg-color: none !important;
+}
